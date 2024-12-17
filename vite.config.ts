@@ -11,7 +11,12 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     mainFields: ['module'],
   },
-  plugins: [analog()],
+  plugins: [analog(), {
+    name: 'debug',
+    configResolved(config) {
+      console.log({ watch: config.test?.watch });
+    },
+  }],
   test: {
     globals: true,
     environment: 'jsdom',
